@@ -35,8 +35,8 @@ def minutos_a_tiempo(minutos):
 
 from django.db.models import Sum, Avg
 
-def generar_resumen(request):
-    qs = Movies.objects.filter(user=request.user)
+def generar_resumen(user):
+    qs = Movies.objects.filter(user=user)
 
     peliculas_vistas = qs.count()
 
