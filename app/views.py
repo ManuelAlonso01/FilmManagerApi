@@ -1,14 +1,25 @@
+# Librerías de Django (Core)
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
+
+# Django REST Framework (Infraestructura de API)
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
+
+# JWT (Autenticación moderna)
 from rest_framework_simplejwt.tokens import RefreshToken
+
+# Lógica de negocio
 from .models import Movies
 from .serializers import MovieSerializer, MovieCreateSerializer, MovieEditSerializer
 from .tools import generar_resumen
-from django.shortcuts import get_object_or_404
 
+
+
+
+#<---------------------------GET----------------------------->
 @api_view(['GET'])
 @permission_classes([IsAuthenticated]) # El usuario debe estar logueado
 def movie_list(request):
@@ -26,6 +37,9 @@ def resumen(request):
         
     return Response(data)
 
+
+
+#<---------------------------POST---------------------------->
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def subir_pelicula(request):
@@ -71,7 +85,8 @@ def register_api(request):
         }
     }, status=status.HTTP_201_CREATED)
     
-    
+
+#<--------------------------PATCH---------------------------->    
 @api_view(['PATCH'])
 @permission_classes([IsAuthenticated])
 def editar_pelicula(request, id):
