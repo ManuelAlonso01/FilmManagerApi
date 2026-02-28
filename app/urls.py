@@ -11,4 +11,5 @@ urlpatterns = [
     path("resumen/", views.resumen, name='resumen'),
     path('subir/', views.subir_pelicula, name='subir'),
     path('register/', views.register_api, name="register"),
+    path('movie-edit/<int:id>/', views.editar_pelicula, name='movie-edit'),
 ]

@@ -7,7 +7,7 @@ class MovieSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
     
     title = serializers.CharField()
-    poster = serializers.CharField()
+    poster = serializers.URLField()
     duration_minutes = serializers.IntegerField()
     descripcion = serializers.CharField()
     calificacion = serializers.IntegerField()
@@ -26,7 +26,7 @@ class MovieSerializer(serializers.ModelSerializer):
         
 class MovieCreateSerializer(serializers.Serializer):
     title = serializers.CharField()
-    poster = serializers.CharField()
+    poster = serializers.URLField()
     duration_minutes = serializers.IntegerField()
     descripcion = serializers.CharField()
     calificacion = serializers.IntegerField()
@@ -51,4 +51,17 @@ class MovieCreateSerializer(serializers.Serializer):
             calificacion=validated_data['calificacion']
         )
         return movie
+    
+class MovieEditSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Movies
+        # Excluimos 'id' y 'user' porque no deben editarse
+        fields = ['title', 'poster', 'duration_minutes', 'descripcion', 'calificacion']
+        
+    def validate_title(self, value):
+        return value.strip().title()
+
+    def validate_descripcion(self, value):
+        return value.strip()
+    
     

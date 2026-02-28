@@ -5,9 +5,9 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import Movies
-from .serializers import MovieSerializer, MovieCreateSerializer
+from .serializers import MovieSerializer, MovieCreateSerializer, MovieEditSerializer
 from .tools import generar_resumen
-
+from django.shortcuts import get_object_or_404
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated]) # El usuario debe estar logueado
@@ -29,7 +29,7 @@ def resumen(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def subir_pelicula(request):
-    serializer = MovieSerializer(data=request.data)
+    serializer = MovieCreateSerializer(data=request.data)
 
     if serializer.is_valid():
         # Al usar JWT, el usuario viene en el request.user
@@ -70,3 +70,16 @@ def register_api(request):
             "access": str(refresh.access_token),
         }
     }, status=status.HTTP_201_CREATED)
+    
+    
+@api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
+def editar_pelicula(request, id):
+    movie = get_object_or_404(Movies, pk=id, user=request.user)
+    serializer = MovieEditSerializer(movie, data=request.data, partial=True) # Partial=True le indica al serializer que
+                                                                             # probablemente no van a estar todos los campos,
+                                                                             # asi que actualiza los que vengan sin que se rompa.
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
+    return Response(MovieSerializer(movie).data, status=status.HTTP_201_CREATED)
+    
