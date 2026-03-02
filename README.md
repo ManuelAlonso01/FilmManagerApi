@@ -6,7 +6,7 @@
 
 Se tomó la decisión estratégica de construir esta API para modernizar la arquitectura del sistema, permitiendo que el servidor sea agnóstico al cliente. Esto deja el proyecto abierto a futuras modificaciones o **implementaciones en el frontend** utilizando tecnologías como **React**, **Vue** o **aplicaciones móviles**, sin necesidad de alterar la lógica de negocio.
 
-Puedes ver un ejemplo de lo que se puede lograr en: [FilmManagerFrontend](https://github.com/ManuelAlonso01/FilmManagerFrontend)
+Puedes ver un ejemplo de lo que se puede lograr en: **[FilmManagerFrontend](https://github.com/ManuelAlonso01/FilmManagerFrontend)**
 
 ## Stack Tecnológico Principal
 
