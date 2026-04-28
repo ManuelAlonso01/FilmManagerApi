@@ -6,7 +6,38 @@
 
 Se tomó la decisión estratégica de construir esta API para modernizar la arquitectura del sistema, permitiendo que el servidor sea agnóstico al cliente. Esto deja el proyecto abierto a futuras modificaciones o **implementaciones en el frontend** utilizando tecnologías como **React**, **Vue** o **aplicaciones móviles**, sin necesidad de alterar la lógica de negocio.
 
-Puedes ver un ejemplo de lo que se puede lograr en: **[FilmManagerFrontend](https://github.com/ManuelAlonso01/FilmManagerFrontend)**
+## 🎨 Frontend Incluido
+
+Este proyecto incluye un **frontend completo** desarrollado con HTML, CSS y JavaScript vanilla que consume todos los endpoints de la API. Características principales:
+
+- ✅ **Interfaz moderna y responsiva**
+- ✅ **Autenticación completa** (login/registro)
+- ✅ **Gestión automática de tokens JWT** con refresh automático
+- ✅ **Gestión completa de películas/series** (CRUD)
+- ✅ **Estadísticas detalladas** y visualización de datos
+- ✅ **Servidor local incluido** para evitar problemas de CORS
+
+### 🚀 Cómo usar el frontend
+
+1. **Inicio rápido (recomendado):**
+   ```bash
+   python start.py
+   ```
+   Esto iniciará tanto la API como el frontend automáticamente.
+
+2. **Inicio manual:**
+   ```bash
+   # Terminal 1 - API
+   python manage.py runserver
+
+   # Terminal 2 - Frontend
+   cd frontend
+   python server.py
+   ```
+
+3. **Abre tu navegador en:** `http://localhost:3000`
+
+El frontend incluye documentación detallada en `frontend/README.md`.
 
 ## Stack Tecnológico Principal
 

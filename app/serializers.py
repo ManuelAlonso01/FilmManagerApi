@@ -11,6 +11,7 @@ class MovieSerializer(serializers.ModelSerializer):
     duration_minutes = serializers.IntegerField()
     descripcion = serializers.CharField()
     calificacion = serializers.IntegerField()
+    is_serie = serializers.BooleanField(default=False)
     
     class Meta:
         model = Movies
@@ -22,6 +23,7 @@ class MovieSerializer(serializers.ModelSerializer):
             "duration_minutes",
             "descripcion",
             "calificacion",
+            "is_serie"
         ]
         
 class MovieCreateSerializer(serializers.Serializer):
@@ -30,7 +32,7 @@ class MovieCreateSerializer(serializers.Serializer):
     duration_minutes = serializers.IntegerField()
     descripcion = serializers.CharField()
     calificacion = serializers.IntegerField()
-    
+    is_serie = serializers.BooleanField(default=False)
     def validate_title(self, value):
         return value.strip().title()
     
@@ -48,7 +50,8 @@ class MovieCreateSerializer(serializers.Serializer):
             poster=validated_data['poster'],
             duration_minutes=validated_data['duration_minutes'],
             descripcion=validated_data['descripcion'],
-            calificacion=validated_data['calificacion']
+            calificacion=validated_data['calificacion'],
+            is_serie=validated_data['is_serie']
         )
         return movie
     
@@ -56,7 +59,7 @@ class MovieEditSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movies
         # Excluimos 'id' y 'user' porque no deben editarse
-        fields = ['title', 'poster', 'duration_minutes', 'descripcion', 'calificacion']
+        fields = ['title', 'poster', 'duration_minutes', 'descripcion', 'calificacion', 'is_serie']
         
     def validate_title(self, value):
         return value.strip().title()

@@ -23,6 +23,7 @@ class Movies(models.Model):
             MaxValueValidator(10)
         ]
     )
+    is_serie = models.BooleanField(default=False)
     
     def __str__(self):
         return self.title
