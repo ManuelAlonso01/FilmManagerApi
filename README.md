@@ -17,6 +17,11 @@ Este proyecto incluye un **frontend completo** desarrollado con HTML, CSS y Java
 - ✅ **Estadísticas detalladas** y visualización de datos
 - ✅ **Servidor local incluido** para evitar problemas de CORS
 
+> [!IMPORTANT]
+> El frontend fue realizado completamente usando copilot, no se asegura el correcto funcionamiento. Puedes ver una alternativa de este [aqui](https://github.com/ManuelAlonso01/FilmManagerFrontend).
+
+
+
 ### 🚀 Cómo usar el frontend
 
 1. **Inicio rápido (recomendado):**
